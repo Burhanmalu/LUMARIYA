@@ -44,6 +44,22 @@ export function AuthModal({ open, onOpenChange, onSuccess }: AuthModalProps) {
             if (response.ok) {
                 await login(data.access_token)
                 onOpenChange(false)
+
+                // Role-based redirect
+                // Fetch user data to check role
+                const userResponse = await fetch('http://localhost:8000/api/auth/me', {
+                    headers: { 'Authorization': `Bearer ${data.access_token}` }
+                })
+
+                if (userResponse.ok) {
+                    const userData = await userResponse.json()
+                    if (userData.is_admin === 1) {
+                        window.location.href = '/admin'
+                    } else {
+                        window.location.href = '/shop'
+                    }
+                }
+
                 if (onSuccess) onSuccess()
             } else {
                 setError(data.detail || 'Authentication failed')

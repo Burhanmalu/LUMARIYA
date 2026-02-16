@@ -26,7 +26,7 @@ export function HeroSection() {
         {/* Background image - converted to Next.js Image with priority for LCP */}
         <div className="absolute inset-0">
           <Image
-            src="/luxury-minimalist-fashion-model-in-elegant-dark-cl.jpg"
+            src="https://images.pexels.com/photos/17561665/pexels-photo-17561665.jpeg"
             alt="Elegant fashion model in dark clothing"
             fill
             priority
